@@ -20,6 +20,25 @@
       ></video>
     </div>
 
+    <div class="text-display">
+      <h2>公司介绍</h2>
+      <p>
+        <span>黄渡游戏公司（Huangdu Game Studio）成立于2019年，总部位于上海市黄渡镇，是一家专注于开发创新型互动娱乐产品的游戏公司。
+        </span>
+      </p>
+      <!-- <button @click="changeText">更改文字</button> -->
+      <el-divider></el-divider>
+
+      <h2>公司历史</h2>
+      <p>
+        <span>公司致力于将艺术与技术结合，通过创意和精益求精的开发，为全球玩家提供极致的娱乐体验。从休闲游戏到大型多人在线角色扮演游戏（MMORPG），黄渡游戏公司在游戏行业内已建立了广泛的声誉。
+
+        </span>
+        <span>自成立以来，公司秉承“用心创造快乐”的核心理念，以玩家体验为中心，不断突破传统游戏开发的界限。目前，黄渡游戏公司已推出多款口碑与市场双赢的游戏产品，在中国及海外市场积累了数千万用户，成为业内备受瞩目的新兴力量。</span>
+      </p>
+
+    </div>
+
     <!-- 评论区 -->
     <el-card class="comment-section" shadow="always">
       <h3>评论区</h3>
@@ -312,6 +331,7 @@ export default {
 .comment-section {
   margin: 20px auto;
   width: 80%;
+  margin-top: 50px !important;
 }
 
 .add-comment {
@@ -368,4 +388,34 @@ export default {
   font-size: 0.9em;
   color: #666;
 }
+
+..text-display {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: left;
+}
+
+.text-display h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  border-bottom: 2px solid #ecf0f1;
+  padding-bottom: 10px;
+}
+
+.text-display p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.text-display p span {
+  display: block;
+  margin-bottom: 15px;
+}
+
 </style>
