@@ -3,9 +3,79 @@
     <AdPop />
     <!-- 页面标题 -->
     <header class="header">
+     <!--显示logo和公司名称-->
+      <img
+        src="@/assets/logo.png"
+        alt="logo"
+        style="width: 100px; height: 100px; border-radius: 50%;"
+      />
       <h1>黄渡游戏公司</h1>
-      <p>探索黄渡游戏的精彩世界，了解我们的团队与创新精神！</p>
+      <p>无限未来，与你共创！</p>
     </header>
+
+
+    <div class="text-display">
+      <h2>
+        <i class="el-icon-info"></i> &nbsp;公司介绍</h2>
+      <p>
+        <span>黄渡游戏公司（Huangdu Game Studio）成立于2019年，总部位于上海市黄渡镇，是一家专注于开发创新型互动娱乐产品的游戏公司。
+        </span>
+      </p>
+      <!-- <button @click="changeText">更改文字</button> -->
+      <el-divider></el-divider>
+
+      <h2>
+        <i class="el-icon-s-order"></i> &nbsp;公司历史</h2>
+      <p>
+        <span>公司致力于将艺术与技术结合，通过创意和精益求精的开发，为全球玩家提供极致的娱乐体验。从休闲游戏到大型多人在线角色扮演游戏（MMORPG），黄渡游戏公司在游戏行业内已建立了广泛的声誉。
+
+        </span>
+        <span>自成立以来，公司秉承“用心创造快乐”的核心理念，以玩家体验为中心，不断突破传统游戏开发的界限。目前，黄渡游戏公司已推出多款口碑与市场双赢的游戏产品，在中国及海外市场积累了数千万用户，成为业内备受瞩目的新兴力量。</span>
+      </p>
+
+      <h2>
+        <i class="el-icon-s-custom"></i> &nbsp;公司文化</h2>
+        <p>
+          <el-collapse>
+    <el-collapse-item
+      v-for="item in collapseItems"
+      :key="item.name"
+      :name="item.name"
+    >
+      <!-- 自定义标题插槽 -->
+      <template v-if="item.hasImage" #title>
+        <div class="collapse-item-header">
+          <el-image
+            :src="item.imageSrc"
+            class="collapse-item-image"
+            :preview-src-list="[]"
+          ></el-image>
+          <span class="collapse-item-title">{{ item.title }}</span>
+        </div>
+      </template>
+      
+      <!-- 正常标题 -->
+      <template v-else #title>
+        {{ item.title }}
+      </template>
+
+      <!-- 内容部分 -->
+      <div v-if="item.contentType === 'text'">
+        <p v-for="(paragraph, index) in item.content" :key="index">
+          {{ paragraph }}
+        </p>
+      </div>
+      <div v-else-if="item.contentType === 'list'">
+        <ul>
+          <li v-for="(point, index) in item.content" :key="index">{{ point }}</li>
+        </ul>
+      </div>
+    </el-collapse-item>
+  </el-collapse>
+             </p>
+
+    </div>
+
 
     <!-- 视频播放器 -->
     <div class="video-container">
@@ -20,28 +90,9 @@
       ></video>
     </div>
 
-    <div class="text-display">
-      <h2>公司介绍</h2>
-      <p>
-        <span>黄渡游戏公司（Huangdu Game Studio）成立于2019年，总部位于上海市黄渡镇，是一家专注于开发创新型互动娱乐产品的游戏公司。
-        </span>
-      </p>
-      <!-- <button @click="changeText">更改文字</button> -->
-      <el-divider></el-divider>
-
-      <h2>公司历史</h2>
-      <p>
-        <span>公司致力于将艺术与技术结合，通过创意和精益求精的开发，为全球玩家提供极致的娱乐体验。从休闲游戏到大型多人在线角色扮演游戏（MMORPG），黄渡游戏公司在游戏行业内已建立了广泛的声誉。
-
-        </span>
-        <span>自成立以来，公司秉承“用心创造快乐”的核心理念，以玩家体验为中心，不断突破传统游戏开发的界限。目前，黄渡游戏公司已推出多款口碑与市场双赢的游戏产品，在中国及海外市场积累了数千万用户，成为业内备受瞩目的新兴力量。</span>
-      </p>
-
-    </div>
-
     <!-- 评论区 -->
     <el-card class="comment-section" shadow="always">
-      <h3>评论区</h3>
+      <h3><i class="el-icon-s-comment"></i> &nbsp;评论区</h3>
       <div class="comments">
         <div
           v-for="(comment, index) in comments"
@@ -111,6 +162,40 @@ import AdPop from '@/components/AdPop.vue';
 export default {
   data() {
     return {
+      activeNames: ['1'],
+      collapseItems: [
+        {
+          name: '1',
+          title: '以人为本',
+          hasImage: true,
+          imageSrc: require('@/assets/culture/robot.png'),
+          contentType: 'text',
+          content: [
+            '黄渡游戏公司坚信，每一款成功的游戏都离不开团队的全身心投入。我们为每一位员工提供深入角色的机会，让他们真正融入产品的每一个细节，力求在职业成长与角色平衡中找到最优解。',
+          ],
+        },
+        {
+          name: '2',
+          title: '创意驱动',
+          hasImage: true,
+          imageSrc: require('@/assets/culture/eye-care.png'),
+          contentType: 'text',
+          content: [
+            '我们坚信，真正的创新源于对全局的掌控和对细节的洞察。公司利用先进的数据整合与感知技术，确保在产品开发中始终掌握每一个关键变量。无论是游戏内的动态变化还是现实中的反馈信息，都能被系统精准捕捉，为创新提供可靠的支持。',
+          ],
+        },
+ 
+        {
+          name: '3',
+          title: '玩家至上',
+          hasImage: true,
+          imageSrc: require('@/assets/culture/happy-face.png'),
+          contentType: 'text',
+          content: [
+            '玩家体验是黄渡游戏的核心，但我们坚信，理解玩家比改变产品更重要。公司不仅倾听玩家心声，更从中主动发现深层次需求。我们的目标是让每一位玩家都成为系统的一部分，在与产品的交互中达到无缝融合。',
+          ],
+        },
+      ],
       comments: [
         {
           id: 1,
@@ -390,7 +475,7 @@ export default {
 }
 
 .text-display {
-  max-width: 600px;
+  max-width: 800px;
   margin: 50px auto;
   padding: 20px 30px;
   background-color: #fff;
@@ -416,6 +501,23 @@ export default {
 .text-display p span {
   display: block;
   margin-bottom: 15px;
+}
+
+.collapse-item-header {
+  display: flex;
+  align-items: center;
+}
+
+.collapse-item-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.collapse-item-title {
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
 </style>
