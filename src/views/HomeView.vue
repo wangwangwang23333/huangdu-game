@@ -389,7 +389,7 @@ export default {
   color: #666;
 }
 
-..text-display {
+.text-display {
   max-width: 600px;
   margin: 50px auto;
   padding: 20px 30px;

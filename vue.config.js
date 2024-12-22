@@ -5,7 +5,5 @@ module.exports = defineConfig({
 
 //github page
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/huangdu-game/'
-    : '/'
+  publicPath: '/huangdu-game/'
 }
