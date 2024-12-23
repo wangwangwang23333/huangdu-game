@@ -93,7 +93,7 @@
       </el-main>
       <el-aside width="400px">
          <!-- 卡片 -->
-          <el-card shadow="always" >
+          <el-card shadow="always" style="margin-top: 30px;">
             <h3>黄渡游戏公司</h3>
             <img
               :src="require('@/assets/logo.png')"
@@ -181,6 +181,8 @@
               v-model="newComment"
               placeholder="输入你的评论"
               :disabled="hasCommented"
+              type="textarea"
+              :autosize="{ minRows: 4, maxRows: 6}"
             ></el-input>
             <el-button
               type="primary"
@@ -190,9 +192,7 @@
               评论
             </el-button>
           </div>
-        </el-card>
-
-
+    </el-card>
 
    
   </div>
@@ -336,6 +336,11 @@ export default {
     addComment() {
       if (this.newComment.trim() === "") {
         this.$message.error("评论内容不能为空！");
+        return;
+      }
+      // 长度必须大于20
+      if (this.newComment.trim().length < 20) {
+        this.$message.error("评论内容不能少于20个字符！");
         return;
       }
 
@@ -596,5 +601,6 @@ export default {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center; /* 居中对齐内容 */
 }
+
 
 </style>

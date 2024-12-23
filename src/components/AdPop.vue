@@ -2,7 +2,7 @@
     <div
       class="ad-popup-dialog"
       v-if="visible"
-      style="padding: 30px;"
+      style="padding: 10px;"
     >
       <!-- 关闭按钮 -->
       <span
@@ -13,6 +13,8 @@
       </span>
 
       <span>由运营商提供的广告</span>
+
+      <div>&nbsp;</div>
   
       <!-- 广告轮播 -->
       <el-carousel
