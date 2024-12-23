@@ -210,11 +210,11 @@ export default {
         {
           id: 2,
           avatar: "avatar2.png",
-          nickname: "柏林人",
+          nickname: "梦想家",
           date: "2024-12-02",
-          text: "美好的一天从一杯啤酒开始！",
+          text: "超爱我们公司的说～",
           identity: "员工",
-          signature: "专注技术的梦想家",
+          signature: "美好的一天从一杯啤酒开始！",
           final: "不！不要....",
         },
         {
@@ -224,7 +224,7 @@ export default {
           date: "2024-12-03",
           text: "创新驱动，超有趣！",
           identity: "员工",
-          signature: "未来科技的探路者",
+          signature: "梦中的梦中，梦中人的梦...",
           final: "我的天啊！我的天啊！！！！"
         },
         {
