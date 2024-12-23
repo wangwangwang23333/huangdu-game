@@ -76,83 +76,125 @@
 
     </div>
 
+    <el-container>
+      <el-main>
+            <!-- 视频播放器 -->
+            <div class="video-container">
+              <video
+                ref="video"
+                class="video-player"
+                :src="require('@/assets/video.mp4')"
+                controls
+                @timeupdate="checkVideoTime"
+                @dragover.prevent
+                @drop="onDrop"
+              ></video>
+            </div>
+      </el-main>
+      <el-aside width="400px">
+         <!-- 卡片 -->
+          <el-card shadow="always" >
+            <h3>黄渡游戏公司</h3>
+            <img
+              :src="require('@/assets/logo.png')"
+              alt="logo"
+              style="width: 100px; height: 100px; border-radius: 50%;"
+            />
 
-    <!-- 视频播放器 -->
-    <div class="video-container">
-      <video
-        ref="video"
-        class="video-player"
-        :src="require('@/assets/video.mp4')"
-        controls
-        @timeupdate="checkVideoTime"
-        @dragover.prevent
-        @drop="onDrop"
-      ></video>
-    </div>
+    
+            <el-progress :percentage="progress" :format="format" color="#5cb87a"></el-progress>
+            <p>我们永远的态度：</p>
+            <img
+              src="@/assets/culture/robot.png"
+              alt="logo"
+              style="width: 100px; height: 100px; border-radius: 50%;"
+            />
+            <img
+              src="@/assets/culture/eye-care.png"
+              alt="logo"
+              style="width: 100px; height: 100px; border-radius: 50%;"
+            />
+            <img
+              src="@/assets/culture/happy-face.png"
+              alt="logo"
+              style="width: 100px; height: 100px; border-radius: 50%;"
+            />
+            <div style="margin-top: 10px;">
+              <span>
+                <i class="el-icon-location"></i> &nbsp;
+                公司地点：黄渡游戏公司地铁站2号口</span>
+            </div>
+          </el-card>
 
-    <!-- 评论区 -->
+      </el-aside>
+    </el-container>
+
     <el-card class="comment-section" shadow="always">
-      <h3><i class="el-icon-s-comment"></i> &nbsp;评论区</h3>
-      <div class="comments">
-        <div
-          v-for="(comment, index) in comments"
-          :key="index"
-          class="comment"
-        >
-          <el-popover
-            trigger="hover"
-            placement="top"
-            width="200"
-          >
-            <div class="popover-content">
-              <img
-                :src="require(`@/assets/avatars/${comment.avatar}`)"
-                alt="avatar"
-                class="popover-avatar"
-              />
-              <p class="popover-nickname">{{ comment.nickname }}</p>
-              <el-tag
-                :type="comment.identity === '员工' ? 'success' : 'info'"
-                class="popover-identity"
+          <h3><i class="el-icon-s-comment"></i> &nbsp;评论区</h3>
+          <div class="comments">
+            <div
+              v-for="(comment, index) in comments"
+              :key="index"
+              class="comment"
+            >
+              <el-popover
+                trigger="hover"
+                placement="top"
+                width="200"
               >
-                {{ comment.identity }}
-              </el-tag>
-              <p class="popover-signature">{{ comment.signature }}</p>
+                <div class="popover-content">
+                  <img
+                    :src="require(`@/assets/avatars/${comment.avatar}`)"
+                    alt="avatar"
+                    class="popover-avatar"
+                  />
+                  <p class="popover-nickname">{{ comment.nickname }}</p>
+                  <el-tag
+                    :type="comment.identity === '员工' ? 'success' : 'info'"
+                    class="popover-identity"
+                  >
+                    {{ comment.identity }}
+                  </el-tag>
+                  <p class="popover-signature">{{ comment.signature }}</p>
+                </div>
+                <template #reference>
+                  <img
+                    :src="require(`@/assets/avatars/${comment.avatar}`)"
+                    alt="avatar"
+                    class="avatar"
+                    @dragstart="onDragStart(comment.id)"
+                  />
+                </template>
+              </el-popover>
+              <div class="comment-content">
+                <div class="comment-header">
+                  <span class="comment-author">{{ comment.nickname }}</span>
+                  <span>&nbsp;&nbsp;&nbsp;</span>
+                  <span class="comment-date">{{ comment.date }}</span>
+                </div>
+                <div class="comment-text">{{ comment.text }}</div>
+              </div>
             </div>
-            <template #reference>
-              <img
-                :src="require(`@/assets/avatars/${comment.avatar}`)"
-                alt="avatar"
-                class="avatar"
-                @dragstart="onDragStart(comment.id)"
-              />
-            </template>
-          </el-popover>
-          <div class="comment-content">
-            <div class="comment-header">
-              <span class="comment-author">{{ comment.nickname }}</span>
-              <span>&nbsp;&nbsp;&nbsp;</span>
-              <span class="comment-date">{{ comment.date }}</span>
-            </div>
-            <div class="comment-text">{{ comment.text }}</div>
           </div>
-        </div>
-      </div>
-      <div class="add-comment">
-        <el-input
-          v-model="newComment"
-          placeholder="输入你的评论"
-          :disabled="hasCommented"
-        ></el-input>
-        <el-button
-          type="primary"
-          @click="addComment"
-          :disabled="hasCommented"
-        >
-          评论
-        </el-button>
-      </div>
-    </el-card>
+          <div class="add-comment">
+            <el-input
+              v-model="newComment"
+              placeholder="输入你的评论"
+              :disabled="hasCommented"
+            ></el-input>
+            <el-button
+              type="primary"
+              @click="addComment"
+              :disabled="hasCommented"
+            >
+              评论
+            </el-button>
+          </div>
+        </el-card>
+
+
+
+   
   </div>
 </template>
 
@@ -163,6 +205,7 @@ export default {
   data() {
     return {
       activeNames: ['1'],
+      progress: 0,
       collapseItems: [
         {
           name: '1',
@@ -339,6 +382,11 @@ export default {
         this.$message.error(final);
         this.draggedCommentId = null; // 清空拖拽状态
         this.deleteNumber += 1;
+        if (this.progress < 80) {
+          this.progress += 10;
+        } else {
+          this.progress = 100;
+        }
         this.updateDeleteStatus();
       } else {
         return
@@ -374,7 +422,11 @@ export default {
       videoElement.webkitPreservesPitch = false;
     }
   }
-    }
+    },
+
+    format() {
+        return "";
+      }
 
 
   },
@@ -399,7 +451,7 @@ export default {
 
 .video-container {
   margin: 0 auto;
-  width: 80%;
+  width: 90%;
   text-align: center;
 }
 
@@ -518,6 +570,31 @@ export default {
 .collapse-item-title {
   font-size: 1.2em;
   font-weight: bold;
+}
+
+.logo-container {
+  position: relative;
+  display: inline-block;
+  margin: 20px 0;
+}
+
+.logo-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: block;
+  position: relative;
+  z-index: 2; /* 确保图片在进度条之上 */
+}
+
+.company-card {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center; /* 居中对齐内容 */
 }
 
 </style>
