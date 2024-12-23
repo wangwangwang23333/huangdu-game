@@ -75,12 +75,12 @@
              </p>
         
       <h2>
-        <i class="el-icon-trophy"></i>公司游戏
+        <i class="el-icon-trophy"></i>&nbsp;公司游戏
       </h2>
       <!--缩放页面-->
       <iframe src="https://wangwangwang.website/huangdu-memory-game/" width="100%" height="700px"></iframe>
       <p>
-        <del>黄渡方块是经典的益智消除游戏，结合了丰富的创意关卡和竞技玩法，深受各年龄段玩家喜爱。</del>
+        <del>黄渡方块是经典的益智消除游戏，结合了丰富的创意关卡和竞技玩法，深受各年龄段玩家喜爱。在这里，体验一下我们的小游戏吧～</del>
       </p>
       <p>
         <del>荣获“最佳休闲游戏”称号，并成为国内外热门手游。</del>
