@@ -21,6 +21,7 @@
         height="300px"
         @change="handleChange"
         ref="carousel"
+        indicator-position="outside"
       >
         <el-carousel-item v-for="(image, index) in images" :key="index">
           <el-image

@@ -204,7 +204,7 @@ export default {
           date: "2024-12-01",
           text: "黄渡游戏公司真不错！",
           identity: "员工",
-          signature: "热爱创新的开发者",
+          signature: "计算机的世界就是由0和1组成",
           final: "我不要进入游戏世界!",
         },
         {
@@ -212,7 +212,7 @@ export default {
           avatar: "avatar2.png",
           nickname: "柏林人",
           date: "2024-12-02",
-          text: "这里的团队很棒！",
+          text: "美好的一天从一杯啤酒开始！",
           identity: "员工",
           signature: "专注技术的梦想家",
           final: "不！不要....",
@@ -220,7 +220,7 @@ export default {
         {
           id: 3,
           avatar: "avatar3.png",
-          nickname: "你好",
+          nickname: "半糖小子",
           date: "2024-12-03",
           text: "创新驱动，超有趣！",
           identity: "员工",
