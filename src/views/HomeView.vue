@@ -73,7 +73,20 @@
     </el-collapse-item>
   </el-collapse>
              </p>
-
+        
+      <h2>
+        <i class="el-icon-trophy"></i>公司游戏
+      </h2>
+      <!--缩放页面-->
+      <iframe src="https://wangwangwang.website/huangdu-memory-game/" width="100%" height="700px"></iframe>
+      <p>
+        <del>黄渡方块是经典的益智消除游戏，结合了丰富的创意关卡和竞技玩法，深受各年龄段玩家喜爱。</del>
+      </p>
+      <p>
+        <del>荣获“最佳休闲游戏”称号，并成为国内外热门手游。</del>
+      </p>
+      <p style="color: red">黄渡游戏有问题！他们官网已经被我黑掉了。游戏和宣传视频都是我替换的。</p>
+      <p style="color: red">如果你看到了，赶紧过来找我！赶紧过来找我！赶紧过来找我！</p>
     </div>
 
     <el-container>
