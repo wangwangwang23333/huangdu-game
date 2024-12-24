@@ -259,7 +259,7 @@ export default {
           avatar: "avatar1.png",
           nickname: "可爱多",
           date: "2024-12-01",
-          text: "黄渡游戏公司真不错！",
+          text: "AI技术应用让黄渡公司一跃成为榜首，这也得益于我们团队成员的不懈努力。",
           identity: "员工",
           signature: "计算机的世界就是由0和1组成",
           final: "我不要进入游戏世界!",
@@ -279,7 +279,7 @@ export default {
           avatar: "avatar3.png",
           nickname: "半糖小子",
           date: "2024-12-03",
-          text: "创新驱动，超有趣！",
+          text: "创新驱动，超有趣！我们公司真的是一直在利用先进的数据整合与感知技术，确保在产品开发中始终掌握每个关键变量",
           identity: "员工",
           signature: "梦中的梦中，梦中人的梦...",
           final: "我的天啊！我的天啊！！！！"
@@ -289,7 +289,7 @@ export default {
           avatar: "avatar4.png",
           nickname: "rene",
           date: "2024-12-04",
-          text: "很高兴能在这里工作。",
+          text: "我们部门招聘角色设计师啦～薪资丰厚，无任何学历要求，社会关系简单者优先！感兴趣联系我！",
           identity: "员工",
           signature: "有趣游戏的创造者",
           final: "不不不不不不不..."
@@ -301,7 +301,7 @@ export default {
           date: "2024-12-05",
           text: "氛围超棒，推荐！",
           identity: "员工",
-          signature: "热爱团队协作",
+          signature: "发生什么事了，怎么今天都不给开车了啊",
           final: "???????"
         },
         {
@@ -309,7 +309,7 @@ export default {
           avatar: "avatar6.png",
           nickname: "小尚",
           date: "2024-12-06",
-          text: "未来可期的公司！",
+          text: "黄渡方块真的有意思，我又玩到了凌晨四五点！",
           identity: "员工",
           signature: "专注成长与未来",
           final: "这都是阴谋！"
@@ -319,7 +319,7 @@ export default {
           avatar: "avatar7.png",
           nickname: "Oliver",
           date: "2024-12-07",
-          text: "愿公司越来越好！",
+          text: "公司最新推出的虚拟人技术真是666，形象会随着环境的变化而变化。我们公司的程序员已经研发出了把游戏、影片都对接了虚拟人技术，后续开发随手机壳变化的软件主题呢，哈哈",
           identity: "员工",
           signature: "黄渡的忠实粉丝",
           final: "终于轮到我了吗？"
@@ -329,7 +329,7 @@ export default {
           avatar: "avatar8.png",
           nickname: "舔狗",
           date: "2024-12-08",
-          text: "黄渡游戏让我成长很多！",
+          text: "黄渡游戏让我成长很多！他给了我去德国柏林研究学习的机会，我还在那里品尝到了最美味的啤酒～",
           identity: "员工",
           signature: "学习与进步的同行者",
           final: "你在干什么！我说你在干什么！"
@@ -503,6 +503,17 @@ export default {
   gap: 15px;
 }
 
+.comment-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.comment-text {
+  font-size: 1.1em;
+  text-align: left;
+}
+
 .comment {
   display: flex;
   align-items: center;
@@ -528,7 +539,7 @@ export default {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .popover-nickname {
