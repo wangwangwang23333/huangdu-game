@@ -1,13 +1,25 @@
 <template>
-  <div class="survey">
-    <h1>问卷填写系统</h1>
+  <div
+  id="app"
+  :style="{
+    backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url(${require('@/assets/background.png')})`,
+    backgroundRepeat: 'repeat-y', // 垂直方向重复
+    backgroundSize: '100% auto', // 宽度为 100%，高度保持比例
+    backgroundPosition: 'top center', // 居中对齐
+  }">
+    <div class="survey"
+  >
+    <div 
+    class="header">
+      <h1> 黄渡游戏公司入职测验</h1>
+    </div>
 
     <!-- 题号导航 -->
     <el-row class="navigation" justify="center" style="margin-bottom: 20px;">
       <el-button
         v-for="(question, index) in questions"
         :key="index"
-        type="text"
+        
         :class="['nav-item', { active: index === currentQuestionIndex }]"
         @click="goToQuestion(index)"
       >
@@ -21,21 +33,25 @@
 
       <!-- 单选题 -->
       <div v-if="currentQuestion.type === 'single-choice'">
+        <el-tag>单选题</el-tag>
         <h3>{{ currentQuestion.question }}</h3>
+        <el-divider />
         <el-radio-group v-model="answers[currentQuestionIndex]" style="width: 100%;">
-          <el-radio-button
+          <el-radio
             v-for="(option, index) in currentQuestion.options"
             :key="index"
             :label="option"
             style="margin-bottom: 10px; width: 100%;"
+            border
           >
             {{ option }}
-          </el-radio-button>
+          </el-radio>
         </el-radio-group>
       </div>
 
       <!-- 多选题 -->
       <div v-if="currentQuestion.type === 'multiple-choice'">
+        <el-tag>多选题</el-tag>
         <h3>{{ currentQuestion.question }}</h3>
         <el-checkbox-group v-model="answers[currentQuestionIndex]" style="width: 100%;">
           <el-checkbox
@@ -43,6 +59,7 @@
             :key="index"
             :label="option"
             style="margin-bottom: 10px; width: 100%;"
+            border
           >
             {{ option }}
           </el-checkbox>
@@ -128,9 +145,11 @@
         :text-inside="true"
         :stroke-width="20"
         :percentage="progressPercentage"
+        type="circle"
         style="width: 200px;"
       />
     </div>
+  </div>
   </div>
 </template>
 
@@ -139,28 +158,93 @@ export default {
   data() {
     return {
       currentQuestionIndex: 0, // 当前题目索引
-      answers: {}, // 存储答案
+      answers: [
+
+      ], // 存储答案
       questions: [
         {
           type: "single-choice",
-          question: "单选题：你最喜欢的颜色是什么？",
-          options: ["红色", "蓝色", "绿色", "黄色"],
+          question: "你是否信任黄渡公司的公司文化？",
+          options: ["是", "否"],
+        },
+        {
+          type: "single-choice",
+          question: "你是否愿意全身心投入黄渡公司？",
+          options: ["是", "否"],
+        },
+        {
+          type: "single-choice",
+          question: "黄渡游戏公司位于黄渡游戏地铁公司地铁站的几号口？",
+          options: ["1号口", "2号口", "3号口", "4号口", "5号口"],
+        },
+        {
+          type: "single-choice",
+          question: "黄渡游戏公司会将员工派遣学习到哪座城市？",
+          options: ["柏林", "东京", "纽约", "巴黎", "伦敦"],
         },
         {
           type: "multiple-choice",
-          question: "多选题：请选择你喜欢的水果",
-          options: ["苹果", "香蕉", "橙子", "葡萄"],
+          question: "黄渡游戏公司已经发展出了哪些子公司？",
+          options: ["黄渡健身房", "半糖村饭店", "黄渡玩具公司", "黄渡电影公司"],
+        },
+        {
+          type: "multiple-choice",
+          question: "黄渡游戏公司的公司文化包括以下哪些？",
+          options: ["以人为本", "创新驱动", "团队合作", "玩家至上"],
+        },
+        {
+          type: "single-choice",
+          question: "利用了黄渡游戏公司的仿真技术后，以下步可能会发生的是？",
+          options: ["小红作为管理员去吃了一顿海底捞，整个游戏世界都有火锅味", 
+          "小强退出游戏后去坐地铁，游戏中的人物也在坐地铁", 
+          "小白换了chiikawa主题的手机壳后，黄渡公司的游戏中也有了chiikawa主题", 
+          "小黑在游戏中买了一辆法拉利，现实中也有了一辆法拉利"],
+        },
+        {
+          type: "single-choice",
+          question: "黄渡游戏公司的核心理念是什么？",
+          options: ["无限未来，与你共创", "用心创造快乐", "知人者智，识人者明", "以人为本，创造未来"],
+        },
+        {
+          type: "multiple-choice",
+          question: "以下哪些属于黄渡游戏公司的核心技术",
+          options: ["AI应用技术", "全平台支持", "区块链技术", "云计算技术", "超真实游戏体验"],
         },
         {
           type: "fill-in-the-blank",
-          question: "填空题：请输入你的名字",
+          question: "在黄渡公司推出的超真实游戏体验中，小红从上午7点玩到了晚上10点，那么游戏时间经过了多少小时？",
+        },
+        {
+          type: "single-choice",
+          question: "请选择你的意向岗位",
+          options: ["角色设计师", "数据工程师", "游戏测试工程师"],
+        },
+        {
+          type: "multiple-choice",
+          question: "以下哪些属于黄渡公司的产品？",
+          options: ["黄渡方块", "黄渡连连看", "幻想征途", "极限竞速", "黄渡大冒险", "黄渡飞车"],
+        },
+        {
+          type: "fill-in-the-blank",
+          question: "请输入你的姓名",
         },
         {
           type: "image-upload",
-          question: "图片上传题：请上传你的头像",
+          question: "请上传你的个人照片",
         },
       ],
     };
+  },
+  created() {
+    // 根据题目类型初始化答案数组
+    for (let i = 0; i < this.questions.length; i++) {
+      if (this.questions[i].type === "multiple-choice") {
+        this.answers.push([]);
+      } else {
+        this.answers.push(undefined);
+      }
+    }
+    // this.answers = new Array(this.questions.length).fill(undefined);
   },
   computed: {
     currentQuestion() {
@@ -213,6 +297,7 @@ export default {
 <style scoped>
 .survey {
   max-width: 600px;
+  min-height: 100vh;
   margin: 0 auto;
   font-family: Arial, sans-serif;
   text-align: center;
@@ -240,5 +325,14 @@ export default {
   position: fixed;
   bottom: 20px;
   right: 20px;
+}
+
+.header {
+  background-color: white; 
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+  margin-left: 0;
+  margin-bottom: 30px;
 }
 </style>

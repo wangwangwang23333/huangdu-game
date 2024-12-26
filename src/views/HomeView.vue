@@ -1,5 +1,11 @@
 <template>
-  <div id="app">
+  <div id="app" 
+  :style="{
+    backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url(${require('@/assets/background.png')})`,
+    backgroundRepeat: 'repeat-y', // 垂直方向重复
+    backgroundSize: '100% auto', // 宽度为 100%，高度保持比例
+    backgroundPosition: 'top center', // 居中对齐
+  }">
     <AdPop />
     <!-- 页面标题 -->
     <header class="header">
@@ -13,12 +19,11 @@
       <p>无限未来，与你共创！</p>
     </header>
 
-
     <div class="text-display">
       <h2>
         <i class="el-icon-info"></i> &nbsp;公司介绍</h2>
       <p>
-        <span>黄渡游戏公司（Huangdu Game Studio）成立于2019年，总部位于上海市黄渡镇，是一家专注于开发创新型互动娱乐产品的游戏公司。
+        <span>黄渡游戏公司（Huangdu Game Studio）成立于2019年，总部位于黄渡市，是一家专注于开发创新型互动娱乐产品的游戏公司。
         </span>
       </p>
       <!-- <button @click="changeText">更改文字</button> -->
@@ -261,7 +266,7 @@ export default {
           date: "2024-12-01",
           text: "AI技术应用让黄渡公司一跃成为榜首，这也得益于我们团队成员的不懈努力。我们推出了最新的仿真技术，游戏中的人物形象会随着主控玩家现实环境的变化而变化。欢迎各位用户体验～",
           identity: "员工",
-          signature: "计算机的世界就是由0和1组成",
+          signature: "计算机的世界里没有感情",
           final: "我不要进入游戏世界!",
         },
         {
@@ -463,9 +468,17 @@ export default {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+
 .header {
   text-align: center;
   margin-bottom: 20px;
+  background-color: #f5f5f5;
+  width: 30%;
+  margin-left: 35%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 
 .video-container {
