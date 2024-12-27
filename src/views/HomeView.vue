@@ -122,6 +122,7 @@
 
     
             <el-progress :percentage="progress" :format="format" color="#5cb87a"></el-progress>
+            <el-button v-if="progress >= 100" type="success" plain @click="seperateAudio">音频去噪</el-button>
             <p>我们永远的态度：</p>
             <img
               src="@/assets/culture/robot.png"
@@ -378,6 +379,40 @@ export default {
     });
   },
   methods: {
+    seperateAudio() {
+      const interval = setInterval(() => {
+        if (this.progress > 0) {
+          this.progress -= Math.floor(Math.random() * 10) + 5; // 随机减少5-14%
+          if (this.progress < 0) this.progress = 0;
+        } else {
+          clearInterval(interval);
+          this.$message.success("音频去噪完成！");
+          // 开始下载文件
+          this.downloadFile();
+          // 隐藏进度条
+          // this.showProgress = false;
+          // this.message = '文件下载已开始。';
+          // this.messageType = 'success';
+        }
+      }, 1500); // 每500毫秒更新一次
+    },
+    downloadFile() {
+      // 假设要下载的文件位于 src/assets 目录下
+      // 使用 require 使 Webpack 处理该文件
+      const filePath = require('@/assets/find.mp3'); // 替换为你的文件路径和名称
+
+      // 创建一个隐藏的链接并点击以下载文件
+      const link = document.createElement('a');
+      link.href = filePath;
+      link.download = 'what is this?.mp3'; // 设置下载文件的名称
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // 可选：显示下载成功消息
+      this.message = '文件下载已开始。';
+      this.messageType = 'success';
+    },
     // 添加新评论
     addComment() {
       if (this.newComment.trim() === "") {

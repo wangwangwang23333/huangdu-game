@@ -14,6 +14,8 @@ default: false
 <template>
     <div class="user-selector">
       <h2>选择用户</h2>
+
+      
   
       <!-- 显示加载状态 -->
       <div v-if="loading" class="loading">
@@ -48,6 +50,7 @@ default: false
         </div>
   
         <!-- 设置按钮 -->
+        <el-button @click="clearUser" style="margin-right: 30px;">清空数据</el-button>
         <button type="submit" :disabled="selectedIndex === null || setting">
           {{ setting ? '设置中...' : '设置' }}
         </button>
@@ -85,6 +88,22 @@ default: false
           this.loading = false;
         }
       },
+      async clearUser() {
+        // 确认是否清空数据
+        if (!window.confirm('确定要清空用户数据吗？')) return;
+        
+        this.loading = true;
+        this.error = '';
+        try {
+          const response = await axios.get(`${process.env.VUE_APP_API_BASE_URL}/api/clear`);
+          this.users = response.data;
+        } catch (err) {
+          this.error = '清空用户数据失败，请稍后重试。';
+          console.error(err);
+        } finally {
+          this.loading = false;
+        }
+      },    
       // 设置选中的用户
       async handleSet() {
         if (this.selectedIndex === null) return;
