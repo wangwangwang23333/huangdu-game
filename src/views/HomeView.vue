@@ -163,9 +163,9 @@
               >
                 <div class="popover-content">
                   <img
-                    :src="require(`@/assets/avatars/${comment.avatar}`)"
+                    :src="comment.avatar.startsWith('http') ? comment.avatar : require(`@/assets/avatars/${comment.avatar}`)"
                     alt="avatar"
-                    class="popover-avatar"
+                    class="popover-avatar"  
                   />
                   <p class="popover-nickname">{{ comment.nickname }}</p>
                   <el-tag
@@ -178,7 +178,7 @@
                 </div>
                 <template #reference>
                   <img
-                    :src="require(`@/assets/avatars/${comment.avatar}`)"
+                    :src="comment.avatar.startsWith('http') ? comment.avatar : require(`@/assets/avatars/${comment.avatar}`)"
                     alt="avatar"
                     class="avatar"
                     @dragstart="onDragStart(comment.id)"
@@ -219,6 +219,7 @@
 
 <script>
 import AdPop from '@/components/AdPop.vue';
+import axios from 'axios';
 
 export default {
   data() {
@@ -343,12 +344,38 @@ export default {
       draggedCommentId: null,
       videoInRange: false, // 是否在触发时间区间内
       newComment: "", // 新评论内容
+      userAvatar: "default_avatar.png", // 用户头像
+      userName: "游客", // 用户昵称
+      // 用户身份
+      userIdentity: "游客",
       hasCommented: false, // 标记是否已评论
       deleteNumber: 0,
     };
   },
   components: {
     AdPop,
+  },
+  computed: {
+    // 获取user的apiURL
+    userAPIUrl() {
+      return `${process.env.VUE_APP_API_BASE_URL}/api/user`;
+    },
+  },
+  created() {
+    // 获取用户信息
+    axios.get(this.userAPIUrl).then((response) => {
+      const userData = response.data;
+      if (userData.length != 0) {
+        // 查看是否有default为true的，都为false则获取最后一个
+        const defaultUser = userData.find((user) => user.default === true) || userData[userData.length - 1];
+        console.log(defaultUser)
+        this.userAvatar = defaultUser.avatar;
+        this.userName = defaultUser.name;
+        this.userIdentity = "员工";
+      }
+
+
+    });
   },
   methods: {
     // 添加新评论
@@ -365,11 +392,11 @@ export default {
 
       const newComment = {
         id: this.comments.length + 1,
-        avatar: "default_avatar.png", // 默认头像
-        nickname: "游客", // 默认昵称
+        avatar: this.userAvatar,
+        nickname: this.userName,
         date: new Date().toISOString().split("T")[0], // 当前日期
         text: this.newComment.trim(),
-        identity: "游客",
+        identity: this.userIdentity,
         signature: "热爱游戏的玩家",
         final: '看来，最后只能我自己进去了...'
       };
