@@ -199,7 +199,7 @@
           <div class="add-comment">
             <el-input
               v-model="newComment"
-              placeholder="输入你的评论"
+              :placeholder="hasCommented ? '您已评论，无法再次评论' : '请输入评论内容（至少20个字符）'"
               :disabled="hasCommented"
               type="textarea"
               :autosize="{ minRows: 4, maxRows: 6}"
