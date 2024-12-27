@@ -122,7 +122,7 @@
 
     
             <el-progress :percentage="progress" :format="format" color="#5cb87a"></el-progress>
-            <el-button v-if="progress >= 100" type="success" plain @click="seperateAudio">音频去噪</el-button>
+            <!-- <el-button v-if="progress >= 100" type="success" plain @click="seperateAudio">音频去噪</el-button> -->
             <p>我们永远的态度：</p>
             <img
               src="@/assets/culture/robot.png"
