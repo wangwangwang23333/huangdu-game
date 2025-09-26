@@ -265,7 +265,7 @@ export default {
           id: 1,
           avatar: "avatar1.png",
           nickname: "可爱多",
-          date: "2024-12-01",
+          date: "2025-09-01",
           text: "AI技术应用让黄渡公司一跃成为榜首，这也得益于我们团队成员的不懈努力。我们推出了最新的仿真技术，游戏中的人物形象会随着主控玩家现实环境的变化而变化。欢迎各位用户体验～",
           identity: "员工",
           signature: "计算机的世界里没有感情",
@@ -275,7 +275,7 @@ export default {
           id: 2,
           avatar: "avatar2.png",
           nickname: "梦想家",
-          date: "2024-12-02",
+          date: "2025-09-02",
           text: "我们部门福利也太棒了！每天都提供半糖村饭店打包的精美甜品～这下打工也动力满满了",
           identity: "员工",
           signature: "美好的一天从一杯啤酒开始！",
@@ -285,7 +285,7 @@ export default {
           id: 3,
           avatar: "avatar3.png",
           nickname: "半糖小子",
-          date: "2024-12-03",
+          date: "2025-09-03",
           text: "创新驱动，超有趣！我们公司真的是一直在利用先进的数据整合与感知技术，确保在产品开发中始终掌握每个关键变量。",
           identity: "员工",
           signature: "梦中的梦中，梦中人的梦...",
@@ -295,7 +295,7 @@ export default {
           id: 4,
           avatar: "avatar4.png",
           nickname: "rene",
-          date: "2024-12-04",
+          date: "2025-09-04",
           text: "我们部门招聘角色设计师啦～薪资丰厚，无任何学历要求，社会关系简单者优先！感兴趣联系我！",
           identity: "员工",
           signature: "最近去参观了一下晶核系统，原来只要手机轻轻一碰就可以了～",
@@ -305,7 +305,7 @@ export default {
           id: 5,
           avatar: "avatar5.png",
           nickname: "Joe",
-          date: "2024-12-05",
+          date: "2025-09-05",
           text: "仿真技术疑似有些过于先进。我今天让同事帮我修改bug，修完忘记关他权限了，然后他晚上去唱K。结果整个游戏世界今天都是各种奇怪的歌声...",
           identity: "员工",
           signature: "发生什么事了，怎么今天都不给开车了啊",
@@ -315,7 +315,7 @@ export default {
           id: 6,
           avatar: "avatar6.png",
           nickname: "小尚",
-          date: "2024-12-06",
+          date: "2025-09-06",
           text: "黄渡方块真的有意思，我又玩到了凌晨四五点！",
           identity: "员工",
           signature: "专注成长与未来",
@@ -324,8 +324,8 @@ export default {
         {
           id: 7,
           avatar: "avatar7.png",
-          nickname: "Oliver",
-          date: "2024-12-07",
+          nickname: "鲸鱼哥",
+          date: "2025-09-07",
           text: "我们部门已经将把游戏和影片都对接了仿真技术，后续还要开发随手机壳变化的软件主题呢，哈哈",
           identity: "员工",
           signature: "黄渡的忠实粉丝",
@@ -335,11 +335,21 @@ export default {
           id: 8,
           avatar: "avatar8.png",
           nickname: "舔狗",
-          date: "2024-12-08",
-          text: "黄渡游戏让我成长很多！他给了我去德国柏林研究学习的机会，我还在那里品尝到了最美味的啤酒～",
+          date: "2025-09-08",
+          text: "黄渡游戏让我成长很多！他给了我去德国柏林研究学习的机会，我还在那里品尝到了最美味的啤酒～希望我们也能够有机会拿起酒杯碰一碰！",
           identity: "员工",
           signature: "学习与进步的同行者",
           final: "你在干什么！我说你在干什么！"
+        },
+        {
+          id: 9,
+          avatar: "avatar9.png",
+          nickname: "管理员",
+          date: "2025-09-11",
+          text: "网页正在紧急修复中，请各位同事耐心等待～",
+          identity: "管理员",
+          signature: "404 Not Found",
+          final: "无法移动"
         }
       ],
       draggedCommentId: null,
@@ -458,6 +468,11 @@ export default {
       console.log(this.videoInRange, this.draggedCommentId);
       if (this.videoInRange && this.draggedCommentId !== null) {
         // 存储对应评论的final
+        if (this.draggedCommentId === 9) {
+          this.$message.error("最高权限jisfjiji无法删除sdif9u2@dsajifji");
+          this.draggedCommentId = null; // 清空拖拽状态
+          return;
+        }
         const final = this.comments.find(
           (comment) => comment.id === this.draggedCommentId
         ).final;
