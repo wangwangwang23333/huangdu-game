@@ -90,6 +90,16 @@
         </div>
       </el-card>
     </div>
+
+    <!-- 公告栏 -->
+    <div class="announcement-bar">
+      <div class="announcement-content">
+        <i class="el-icon-bell"></i>
+        <span class="announcement-text">
+          请以上上榜员工，按照排名依次前往前台领取奖品。领取奖品时需携带工卡，凭工卡照片签到
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -419,6 +429,90 @@ export default {
   border: 1px solid rgba(0, 123, 255, 0.2);
 }
 
+/* 公告栏样式 */
+.announcement-bar {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.announcement-content {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.95) 0%, rgba(255, 152, 0, 0.95) 100%);
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 193, 7, 0.3);
+  border-radius: 20px;
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8px 32px rgba(255, 193, 7, 0.2);
+  position: relative;
+  overflow: hidden;
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+.announcement-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shine 4s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 8px 32px rgba(255, 193, 7, 0.2);
+  }
+  100% {
+    box-shadow: 0 8px 32px rgba(255, 193, 7, 0.4), 0 0 20px rgba(255, 193, 7, 0.3);
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.announcement-content i {
+  font-size: 1.8em;
+  color: #333;
+  margin-right: 15px;
+  animation: ring 2s ease-in-out infinite;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes ring {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  10%, 30% {
+    transform: rotate(-10deg);
+  }
+  20%, 40% {
+    transform: rotate(10deg);
+  }
+}
+
+.announcement-text {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  line-height: 1.4;
+  position: relative;
+  z-index: 1;
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
   .arrangement-container {
@@ -442,6 +536,22 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
+  }
+
+  .announcement-content {
+    padding: 15px 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .announcement-content i {
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+
+  .announcement-text {
+    font-size: 1em;
   }
 }
 </style>
