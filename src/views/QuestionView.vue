@@ -149,7 +149,7 @@
           <p>我就是之前成功逃出公司的幸存者。这个问卷也被我黑入了，你通过了我的考验，我也很高兴你能加入到我这里</p>
           <p>我希望你能够混入他们公司的行列，通过面试，成为他们的员工</p>
           <p>我会在你面试之前，给你一些帮助，那么请先加入下面的群聊！</p>
-          <img :src="require('@/assets/find_me.jpg')" alt="find_me" style="width: 50%;"/>
+          <img :src="require('@/assets/find_me_2025.jpg')" alt="find_me" style="width: 50%;"/>
         </div>
       </el-card>
     </div>
