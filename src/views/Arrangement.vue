@@ -96,7 +96,7 @@
       <div class="announcement-content">
         <i class="el-icon-bell"></i>
         <span class="announcement-text">
-          请以上上榜员工，按照排名依次前往前台领取奖品。领取奖品时需携带工卡，凭工卡照片签到
+          请以上上榜员工，按照排名依次前往指定地点领取奖品。领取奖品时需携带工卡，凭工卡照片签到
         </span>
       </div>
     </div>
